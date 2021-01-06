@@ -1,0 +1,91 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>添加</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/Content/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="/Content/css/public.css" media="all">
+    <script src="/Content/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        layui.use(['form', 'layedit', 'laydate'], function () {
+            var $ = layui.jquery,
+                form = layui.form,
+                layer = layui.layer;
+
+            //自定义验证规则
+            form.verify({
+                title: function (value) {
+                    if (value.length < 0) {
+                        return '不能为空';
+                    }
+                }
+                , pass: [
+                    /^[\S]{6,12}$/
+                    , '密码必须6到12位，且不能出现空格'
+                ]
+                , content: function (value) {
+                    layedit.sync(editIndex);
+                }
+            });
+
+            $("#btnAdd").click(function () {
+                var o = new Object();
+                o.RoomName= $("#RoomName").val();
+                o.Remake = $("#Remake").val();
+                o.State = $("input[name='state']:checked").val();;
+                $.post("/StudioArea/StudioArea/AddStudio", o, function (d) {
+                    if (d == "Success") {
+                        layer.msg("添加成功！");
+                        history = -1;
+                    }
+                    else {
+                        layer.msg("添加失败！");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="layuimini-container">
+        <div class="layuimini-main">
+            <form class="layui-form" action="" lay-filter="example">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">直播间名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="RoomName" name="RoomName" lay-verify="title" autocomplete="off" placeholder="直播间名称" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">备注</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="Remake" name="Remake" lay-verify="title" autocomplete="off" placeholder="备注" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">状态</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="state" value="0" title="启用" checked="">
+                        <input type="radio" name="state" value="1" title="禁用">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        @*<button class="layui-btn" lay-submit="" lay-filter="step">立即提交</button>*@
+                        <button class="layui-btn" id="btnAdd" value="立即提交">立即提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
