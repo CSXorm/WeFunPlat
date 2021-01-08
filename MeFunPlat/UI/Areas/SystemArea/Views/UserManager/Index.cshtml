@@ -17,79 +17,117 @@
     <script src="~/Content/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
     <script type="text/javascript">
         layui.use(['form', 'table'], function () {
-        var $ = layui.jquery,
-            form = layui.form,
-            table = layui.table;
+            var $ = layui.jquery,
+                form = layui.form,
+                table = layui.table;
 
-        table.render({
-            elem: '#currentTableId',
-            url: '/SystemArea/UserManager/GetData',
-            toolbar: '#toolbarDemo',
-            cols: [[
-                { field: 'ID', width: 80, title: 'ID'},
-                { field: 'UserName', width: 110, title: '用户账号'},
-                { field: 'UserPwd', width: 110, title: '用户密码'},
-                { field: 'NickName', width: 110, title: '用户昵称'},
-                { field: 'State', Width: 80, title: '状态'},
-                {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
-            ]],
-            limits: [10, 15, 20],
-            limit: 15,
-            page: true,
-            skin: 'line'
-        });
+            table.render({
+                elem: '#currentTableId',
+                url: '/SystemArea/UserManager/GetData',
+                toolbar: '#toolbarDemo',
+                cols: [[
+                    { field: 'ID', width: 80, title: 'ID' },
+                    { field: 'UserName', width: 110, title: '用户账号' },
+                    { field: 'UserPwd', width: 110, title: '用户密码' },
+                    { field: 'NickName', width: 110, title: '用户昵称' },
+                    { field: 'State', Width: 80, title: '状态' },
+                    { title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center" }
+                ]],
+                limits: [10, 15, 20],
+                limit: 15,
+                page: true,
+                skin: 'line'
+            });
 
-        table.on('toolbar(currentTableFilter)', function (obj) {
-            if (obj.event === 'add') {  // 监听添加操作
-                var index = layer.open({
-                    title: '添加用户',
-                    type: 2,
-                    shade: 0.2,
-                    maxmin:true,
-                    shadeClose: true,
-                    area: ['100%', '100%'],
-                    content: '/SystemArea/UserManager/Add',
-                });
-                $(window).on("resize", function () {
-                    layer.full(index);
-                });
-            }
-        });
+            // 监听搜索操作
+            //form.on('submit(data-search-btn)', function (data) {
+            //    var result = JSON.stringify(data.field);
+            //    layer.alert(result, {
+            //        title: '最终的搜索信息'
+            //    });
 
-        table.on('tool(currentTableFilter)', function (obj) {
-            var data = obj.data;//获取当前行的数据
-            if (obj.event === 'edit') {
+            //    //执行搜索重载
+            //    table.reload('currentTableId', {
+            //        page: {
+            //            curr: 1
+            //        }
+            //        , where: {
+            //            searchParams: result
+            //        }
+            //    }, 'data');
 
-                var index = layer.open({
-                    title: '编辑用户',
-                    type: 2,
-                    shade: 0.2,
-                    maxmin:true,
-                    shadeClose: true,
-                    area: ['100%', '100%'],
-                    content: '/SystemArea/UserManager/Edit',
-                });
-                $(window).on("resize", function () {
-                    layer.full(index);
-                });
-                return false;
-            } else if (obj.event === 'delete') {
-                layer.confirm('真的删除行么', function (index) {
-                    $.post("/SystemArea/UserManager/DelUser", data, function (d) {
-                        if (d == "Success") {
-                            layer.msg("删除成功！");
-                            obj.del();
-                            layer.close(index);
-                        }
-                        else {
-                            layer.msg("删除失败！");
-                        }
+            //    return false;
+            //});
+
+            /**
+             * toolbar监听事件
+             */
+            table.on('toolbar(currentTableFilter)', function (obj) {
+                if (obj.event === 'add') {  // 监听添加操作
+                    var index = layer.open({
+                        title: '添加用户',
+                        type: 2,
+                        shade: 0.2,
+                        maxmin: true,
+                        shadeClose: true,
+                        area: ['100%', '100%'],
+                        content: '/SystemArea/UserManager/Add',
                     });
-                });
-            }
-        });
+                    $(window).on("resize", function () {
+                        layer.full(index);
+                    });
+                }
+            });
 
-    });
+            //监听表格复选框选择
+            //table.on('checkbox(currentTableFilter)', function (obj) {
+            //    console.log(obj)
+            //});
+            //$('#toolbarDemo').on('click', function () {
+            //    var type = $('#dataTypeCopy').find("option:selected").val();
+            //    saveCopyData(data, type);
+            //})
+            table.on('tool(currentTableFilter)', function (obj) {
+                var data = obj.data;//获取当前行的数据
+
+                //获取数组
+                $.each(data[0], function (name, value) {
+                    editList.push(value);
+                });
+                if (obj.event === 'edit') {
+
+                    var index = layer.open({
+                        title: '编辑用户',
+                        type: 2,
+                        shade: 0.2,
+                        maxmin: true,
+                        shadeClose: true,
+                        area: ['100%', '100%'],
+                        content: '/SystemArea/UserManager/edit?ID=' + data.ID,
+
+
+                    });
+                    $(window).on("resize", function () {
+                        layer.full(index);
+                    });
+                    return false;
+                } else if (obj.event === 'delete') {
+                    layer.confirm('真的删除行么', function (index) {
+                        $.post("/SystemArea/UserManager/DelUser", data, function (d) {
+                            if (d == "Success") {
+                                layer.msg("删除成功！");
+                                obj.del();
+                                layer.close(index);
+                            }
+                            else {
+                                layer.msg("删除失败！");
+                            }
+                        });
+                    });
+                }
+            });
+
+        });
     </script>
 </head>
 <body>

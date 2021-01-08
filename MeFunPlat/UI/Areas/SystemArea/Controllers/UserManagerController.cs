@@ -68,23 +68,36 @@ namespace UI.Areas.SystemArea.Controllers
             return Content(result);
         }
 
-        public ActionResult Edit()
+        public ActionResult edit(int? ID)
         {
+            Users uinfo = new Users();
+
+
+            using (MyContext db = new MyContext())
+            {
+                uinfo = db.Users.Where(x => x.ID == ID).FirstOrDefault();
+                ViewBag.sysrole = uinfo;
+
+            }
             return View();
         }
-        //public ActionResult EditUser(Users info)
-        //{
-        //    string result = "Fail";
-        //    using (MyContext db = new MyContext())
-        //    {
-        //        db.Users.Edit(info);
-        //        int r = db.SaveChanges();
-        //        if (r > 0)
-        //        {
-        //            result = "Success";
-        //        }
-        //    }
-        //    return Content(result);
-        //}
+        public ActionResult editUser(Users info)
+        {
+            string result = "Fail";
+            using (MyContext db = new MyContext())
+            {
+                Users uinfo = db.Users.Where(x => x.ID == info.ID).FirstOrDefault();
+                uinfo.UserName = info.UserName;
+                uinfo.UserPwd = info.UserPwd;
+                uinfo.NickName = info.NickName;
+                uinfo.State = info.State;
+                int i = db.SaveChanges();
+                if (i > 0)
+                {
+                    result = "Success";
+                }
+            }
+            return Content(result);
+        }
     }
 }

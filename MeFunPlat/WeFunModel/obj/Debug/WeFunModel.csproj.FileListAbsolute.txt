@@ -46,3 +46,15 @@ C:\Users\Admin\Desktop\结业项目\结业项目\MeFunPlat\WeFunModel\obj\Debug\
 C:\Users\Admin\Desktop\结业项目\结业项目\MeFunPlat\WeFunModel\obj\Debug\WeFunModel.dll
 C:\Users\Admin\Desktop\结业项目\结业项目\MeFunPlat\WeFunModel\obj\Debug\WeFunModel.pdb
 E:\开发\结业项目\结业项目\MeFunPlat\WeFunModel\obj\Debug\WeFunModel.csprojAssemblyReference.cache
+C:\Users\xiaoxiao\source\repos\CSXorm\WeFunPlat\MeFunPlat\WeFunModel\bin\Debug\WeFunModel.dll.config
+C:\Users\xiaoxiao\source\repos\CSXorm\WeFunPlat\MeFunPlat\WeFunModel\bin\Debug\WeFunModel.dll
+C:\Users\xiaoxiao\source\repos\CSXorm\WeFunPlat\MeFunPlat\WeFunModel\bin\Debug\WeFunModel.pdb
+C:\Users\xiaoxiao\source\repos\CSXorm\WeFunPlat\MeFunPlat\WeFunModel\bin\Debug\EntityFramework.dll
+C:\Users\xiaoxiao\source\repos\CSXorm\WeFunPlat\MeFunPlat\WeFunModel\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\xiaoxiao\source\repos\CSXorm\WeFunPlat\MeFunPlat\WeFunModel\bin\Debug\EntityFramework.xml
+C:\Users\xiaoxiao\source\repos\CSXorm\WeFunPlat\MeFunPlat\WeFunModel\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\xiaoxiao\source\repos\CSXorm\WeFunPlat\MeFunPlat\WeFunModel\obj\Debug\WeFunModel.csprojAssemblyReference.cache
+C:\Users\xiaoxiao\source\repos\CSXorm\WeFunPlat\MeFunPlat\WeFunModel\obj\Debug\WeFunModel.csproj.CoreCompileInputs.cache
+C:\Users\xiaoxiao\source\repos\CSXorm\WeFunPlat\MeFunPlat\WeFunModel\obj\Debug\WeFunModel.csproj.CopyComplete
+C:\Users\xiaoxiao\source\repos\CSXorm\WeFunPlat\MeFunPlat\WeFunModel\obj\Debug\WeFunModel.dll
+C:\Users\xiaoxiao\source\repos\CSXorm\WeFunPlat\MeFunPlat\WeFunModel\obj\Debug\WeFunModel.pdb

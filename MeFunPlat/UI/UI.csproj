@@ -250,6 +250,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\AArea\AAreaAreaRegistration.cs" />
     <Compile Include="Areas\AArea\Controllers\AAreaController.cs" />
+    <Compile Include="Areas\LabourArea\Controllers\ContractController.cs" />
     <Compile Include="Areas\LabourArea\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\LabourArea\LabourAreaAreaRegistration.cs" />
     <Compile Include="Areas\StudioArea\Controllers\StudioAreaController.cs" />
@@ -326,6 +327,9 @@
     <Content Include="Areas\StudioArea\Views\StudioArea\Index.cshtml" />
     <Content Include="Areas\StudioArea\Views\StudioArea\Add.cshtml" />
     <Content Include="Areas\StudioArea\Views\StudioArea\Edit.cshtml" />
+    <Content Include="Areas\LabourArea\Views\Contract\Index.cshtml" />
+    <Content Include="Areas\LabourArea\Views\Contract\Add.cshtml" />
+    <Content Include="Areas\LabourArea\Views\Contract\edit.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />

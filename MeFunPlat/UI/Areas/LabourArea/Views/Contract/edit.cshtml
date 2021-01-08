@@ -1,14 +1,15 @@
 ﻿
 @{
     Layout = null;
-}@using WeFunModel;
+}
+@using WeFunModel;
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <meta name="viewport" content="width=de
-    <title>Edit</title>
+    <meta name="viewport" content="width=device-width" />
+    <title>edit</title>
     <title>编辑用户</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -39,17 +40,20 @@
                 }
             });
 
-            $("#btnAdd").click(function () {
+            $("#btnEdit").click(function () {
                 var o = new Object();
-                o.id = $("#id").val();
-                o.UserName = $("#username").val();
-                o.UserPwd = $("#password").val();
-                o.NickName = $("#nickname").val();
-                o.State = $("input[name='state']:checked").val();;
-                $.post("/SystemArea/UserManager/editUser", o, function (d) {
+                o.ConID = $("#conid").val();
+                o.ID = $("#id").val();
+                o.JoinDate = $("#joinDate").val();
+                o.LeaveDate = $("#leaveDate").val();
+                o.ConBeginDate = $("#conBeginDate").val();
+                o.ConEndDate = $("#conEndDate").val();
+                o.ConRemake = $("#conRemake").val();;
+
+                $.post("/LabourArea/Contract/editUser", o, function (d) {
                     if (d == "Success") {
                         layer.msg("修改成功！"), {
-                            title: '最终的提交信息'
+                            title:'最终的提交信息'
                         }, function () {
                             layer.close(index);
                             //var iframeIndex = parent.layer.get
@@ -78,55 +82,49 @@
     <div class="layuimini-container">
         <div class="layuimini-main">
             <form class="layui-form" action="" lay-filter="example">
-                @{Users uinfo = ViewBag.sysrole;}
-                <input type="text" id="id" style="display:none" value="@uinfo.ID">
+                @{Contract uinfo = ViewBag.sysrole;}
+                <input type="text" id="conid" style="display:none" value="@uinfo.ConID">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">用户账号</label>
+                    <label class="layui-form-label">用户编号</label>
                     <div class="layui-input-block">
-                        <input type="text" id="username" name="username" lay-verify="title" autocomplete="off" value="@uinfo.UserName" class="layui-input">
+                        <input type="text" id="id" name="username" lay-verify="title" autocomplete="off" value="@uinfo.ID" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">用户密码</label>
+                    <label class="layui-form-label">签约时间</label>
                     <div class="layui-input-block">
-                        <input type="text" id="password" name="password" value="@uinfo.UserPwd" autocomplete="off" class="layui-input">
+                        <input type="text" id="joinDate" name="username" lay-verify="title" autocomplete="off" value="@uinfo.JoinDate" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">用户昵称</label>
+                    <label class="layui-form-label">到期时间</label>
                     <div class="layui-input-block">
-                        <input type="text" id="nickname" name="nickname" lay-verify="title" autocomplete="off" value="@uinfo.NickName" class="layui-input">
+                        <input type="text" id="leaveDate" name="password" value="@uinfo.LeaveDate" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">状态</label>
+                    <label class="layui-form-label">开始时间</label>
                     <div class="layui-input-block">
-                        @{
-                            if (uinfo.State == 0)
-                            {
-                                <input type="radio" name="state" value="0" title="启用" checked="">
-                                <input type="radio" name="state" value="1" title="禁用">
-                            }
-                            else
-                            {
-                                <input type="radio" name="state" value="0" title="启用" checked="">
-                                <input type="radio" name="state" value="1" title="禁用">
-                            }
-                        }
+                        <input type="text" id="conBeginDate" name="nickname" lay-verify="title" autocomplete="off" value="@uinfo.ConBeginDate" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">结束时间</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="conEndDate" name="nickname" lay-verify="title" autocomplete="off" value="@uinfo.ConEndDate" class="layui-input">
+                    </div>
+                </div>
 
+                <div class="layui-form-item">
+                    <label class="layui-form-label">备注</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="conRemake" name="nickname" lay-verify="title" autocomplete="off" value="@uinfo.ConRemake" class="layui-input">
                     </div>
                 </div>
-                @*<div>
-                        <label>状态</label>
-                        <div>
-                            <input type="radio" name="state" value="0" title="启用" checked />
-                            <input type="radio" name="state" value="0" title="禁用"  />
-                        </div>
-                    </div>*@
                 <div class="layui-form-item">
                     <div class="layui-input-block">
                         @*<button class="layui-btn" lay-submit="" lay-filter="step">立即提交</button>*@
-                        <input class="layui-btn" id="btnAdd" value="立即提交" />
+                        <input class="layui-btn" id="btnEdit" value="立即提交" />
                     </div>
                 </div>
             </form>
