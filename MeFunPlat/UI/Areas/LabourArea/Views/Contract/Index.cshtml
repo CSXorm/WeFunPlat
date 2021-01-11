@@ -137,7 +137,7 @@
                     return false;
                 } else if (obj.event === 'delete') {
                     layer.confirm('真的删除行么', function (index) {
-                        $.post("/SystemArea/UserManager/DelUser", data, function (d) {
+                        $.post("/LabourArea/Contract/DelUser", data, function (d) {
                             if (d == "Success") {
                                 layer.msg("删除成功！");
                                 obj.del();

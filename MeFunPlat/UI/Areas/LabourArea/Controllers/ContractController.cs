@@ -38,6 +38,20 @@ namespace UI.Areas.LabourArea.Controllers
             ViewBag.contype = usinf;
             return View();
         }
+        public ActionResult AddStudio(Contract info)
+        {
+            string result = "Fail";
+            using (MyContext db = new MyContext())
+            {
+                db.Contract.Add(info);
+                int r = db.SaveChanges();
+                if (r > 0)
+                {
+                    result = "Success";
+                }
+            }
+            return Content(result);
+        }
         public ActionResult edit(int? ConID)
         {
             Contract uinfo = new Contract();
